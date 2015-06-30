@@ -1,0 +1,20 @@
+{
+  "name": "Gauge.js",
+  "version": "0.0.1",
+  "description": "Flexible html gauge",
+  "main": "dist/test/index.html",
+  "authors": [
+    "Dmitry Sobolev"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-uglify": "^1.1.0",
+    "gulp-watch": "^4.2.2",
+    "jquery-bridget": "^1.1.0",
+    "rimraf": "^2.3.2"
+  }
+}
