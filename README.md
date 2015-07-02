@@ -1,1 +1,1 @@
-Hello bruhs gauge is in the way!
+Hello bruhs gauge is on the way!
