@@ -1,13 +1,13 @@
 // Variables
 
-$gauge-diameter: 600px;
-$dial-width: 4px;
+$gauge-diameter: 300px;
+$dial-width: 10px;
 
-$dial-angle: 240deg;
+$dial-aperture: 160deg;
 $warning-dial-angle: 60deg;
 $danger-dial-angle: 20deg;
 
-$hand-length: 310px;
+$hand-length: 100px;
 $hand-width: 12px;
 $hand-center-radius: 20px;
 
@@ -65,7 +65,7 @@ $captions-color: $base-dial-color;
             transform-origin: bottom center;
         }
         
-        $dial-angle-offset: (360deg - $dial-angle)/2 - 90deg;
+        $dial-angle-offset: (360deg - $dial-aperture)/2 - 90deg;
 
         .gaugejs-dial-left-wrap {
             @extend .gaugejs-dial-wrap;
@@ -240,6 +240,10 @@ $captions-color: $base-dial-color;
 
                     transform-origin: center;
                     transition: all 1s ease;
+
+                    b {
+                        font-weight: normal;
+                    }
                 }
 
                 &:before {
@@ -257,17 +261,44 @@ $captions-color: $base-dial-color;
 
                     background: $captions-color;
                 }
+                
+                &.gaugejs-caption-left-fit {
+                    span b {
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+                &.gaugejs-caption-right-fit {
+                    span b {
+                        position: absolute;
+                        left: 0;
+                    }
+                }
             }
         }
 
         &.gaugejs-captions-inner {
             li {
-                margin-top: ($gauge-diameter/2 - 40px);
-                transform-origin: center ($gauge-diameter/2 - 40px)*(-1);
+                margin-top: ($gauge-diameter/2 - 40px - $dial-width);
+                transform-origin: center ($gauge-diameter/2 - 40px - $dial-width)*(-1);
 
                 &:before {
                     top: auto;
                     bottom: -10px;
+                }
+
+                &.gaugejs-caption-left-fit {
+                    span b {
+                        left: 0;
+                        right: auto;
+                    }
+                }
+
+                &.gaugejs-caption-right-fit {
+                    span b {
+                        left: auto;
+                        right: 0;
+                    }
                 }
             }
         }

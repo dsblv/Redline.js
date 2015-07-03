@@ -19,9 +19,9 @@ function Gauge ( element, options ) {
 
     // default values
     var defaults = {
-        angle       : 240,
+        aperture    : 180,
         marks       : [0, 1, 2, 3, 4, 5, 6],
-        innerMarks  : false,
+        innerMarks  : true,
         position    : 0
     }
 
@@ -32,8 +32,6 @@ function Gauge ( element, options ) {
 
     if ( window.jQuery )
         this.$el = window.jQuery( this.el );
-
-
 
     this.attributes = defaults;
 
@@ -75,7 +73,7 @@ Gauge.prototype.extend = function ( obj ) {
 // calculates actual hand angle
 Gauge.prototype._calculateAngle = function ( angle, position, getter ) {
 
-    var angle      = angle    || this.get('angle'),
+    var angle      = angle    || this.get('aperture'),
         position   = position || this.get('position'),
         percentage = position / (this.get('marks').length - 1);
         handAngle  = (360 - angle) / 2 + angle * percentage;
@@ -96,8 +94,20 @@ Gauge.prototype.moveHand = function ( angle ) {
     return this;
 }
 
-// drops custom marks on a gauge
+
 Gauge.prototype.render = function () {
+    var angle       = (360 - this.get('aperture'))/2 - 90,
+        leftHalf    = this.el.getElementsByClassName('gaugejs-dial-left-wrap')[0],
+        rightHalf   = this.el.getElementsByClassName('gaugejs-dial-right-wrap')[0];
+
+    leftHalf.style.transform = leftHalf.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+    rightHalf.style.transform = rightHalf.style[prefix.lowercase + 'Transform'] = 'rotate(' + -angle + 'deg)';
+
+    return this.renderMarks();
+}
+
+// drops custom marks on a gauge
+Gauge.prototype.renderMarks = function () {
     var marks = this.get( 'marks' ),
         markList = this.captionsEl
                        .getElementsByTagName( 'ul' )[0];
@@ -106,7 +116,7 @@ Gauge.prototype.render = function () {
         var mark  = window.document.createElement( 'li' ),
             angle = this._calculateAngle(null, i, true);
 
-        mark.innerHTML = '<span>' + marks[i] + '</span>';
+        mark.innerHTML = '<span><b>' + marks[i] + '</b></span>';
 
         mark.style.transform = mark.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
 
@@ -114,8 +124,18 @@ Gauge.prototype.render = function () {
 
         span.style.transform = span.style[prefix.lowercase + 'Transform'] = 'rotate(-' + angle + 'deg)';
 
+        if ( marks[i].toString().length > 1 ) {
+            if ( i < marks.length / 2 )
+                mark.className = 'gaugejs-caption-left-fit';
+            else
+                mark.className = 'gaugejs-caption-right-fit';
+        }
+
         markList.appendChild(mark);
     }
+
+    if ( this.get('innerMarks') )
+            this.captionsEl.className += ' gaugejs-captions-inner';
 
     return this.moveHand();
 }

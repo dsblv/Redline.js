@@ -19,3 +19,5 @@
     }
 
 }(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+
+//= ../../node_modules/jquery-bridget/jquery.bridget.js
