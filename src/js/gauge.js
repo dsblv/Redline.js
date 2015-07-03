@@ -5,23 +5,20 @@
  * by Dmitry Sobolev
  */
 
+
 //= intro
 
+
+/**
+ * @param {Element} element
+ * @param {Object} options
+ * @constructor
+ */
 function Gauge ( element, options ) {
 
     var defaults = {
         points            : [],
-        position          : 0,
-
-        baseLineLength    : .6,
-        warningLineLength : .3,
-        dangerLineLength  : .6,
-
-        baseLineWidth     : 3, // px
-
-        baseLineColor     : 'black',
-        warningLineColor  : 'yellow',
-        dangerLineColor   : 'red'
+        position          : 0
     }
 
     this.el = element;
@@ -35,34 +32,29 @@ function Gauge ( element, options ) {
         .extend( options );
 
     this._init();
-
-    return this;
 }
 
 
-
+/**
+ * adds new attributes to a Gauge or changes old ones
+ * @param {Object} obj - object with new attributes
+ */
 Gauge.prototype.extend = function ( obj ) {
     var i = 0;
 
     if ( typeof obj === 'object' )
         for ( i in obj )
-            this.attributes[ i ] = obj[ i ];
+            this.attributes[i] = obj[i];
 
     return this;
 }
 
-
-Gauge.prototype._grabCSSSettings = function () {
-    // grabbing css settings to draw nice canvas
-    var values = {};
-
-    return this.extend( values );
-}
-
+// draws a frame on a canvas
 Gauge.prototype.draw = function () {
 
     return this;
 }
+
 
 Gauge.prototype._init = Gauge.prototype.draw;
 

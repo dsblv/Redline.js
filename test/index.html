@@ -5,20 +5,44 @@
     <title>Gauge.js test page</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../dist/gauge.css">
+
 </head>
 <body>
     
-    <div id="gauge" class="gauge">
-        <div class="settings">
-            <div class="line">
-                <div class="base">
-                    <div class="warning">
-                        <div class="danger"></div>
-                    </div>
+    <div id="gauge" class="gaugejs">
+        <div class="gaugejs-dial">
+            <!-- Left side of the dial -->
+            <div class="gaugejs-dial-left-half">
+                <div class="gaugejs-dial-left-wrap">
+                    <div class="gaugejs-dial-left"></div>
                 </div>
             </div>
-            <div class="captions">Test caption</div>
+            
+            <!-- Right side of the dial -->
+            <div class="gaugejs-dial-right-half">
+                <div class="gaugejs-dial-right-wrap">
+                    <div class="gaugejs-dial-right"></div>
+                    
+                    <!-- Right side contains "warnig" and "danger" lines -->
+                    <div class="gaugejs-dial-warning-wrap">
+                        <div class="gaugejs-dial-warning"></div>
+                    </div>
+
+                    <div class="gaugejs-dial-danger-wrap">
+                        <div class="gaugejs-dial-danger"></div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
+        <div class="gaugejs-hand">
+            <div class="gaugejs-hand-arrow"></div>
+            <div class="gaugejs-hand-center"></div>
+        </div>
+
+        <div class="gaugejs-captions"></div>
     </div>
     
 

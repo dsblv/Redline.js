@@ -1,0 +1,169 @@
+// Variables
+
+$gauge-diameter: 600px;
+$dial-width: 4px;
+
+$dial-angle: 300deg;
+$warning-dial-angle: 60deg;
+$danger-dial-angle: 20deg;
+
+$hand-length: 310px;
+$hand-width: 12px;
+$hand-center-radius: 20px;
+
+$base-dial-color: #666666;
+$warning-dial-color: #ffa500;
+$danger-dial-color: #ff0000;
+$hand-color: #1e98e4;
+
+
+.gaugejs {
+    display: block;
+    position: relative;
+
+    width: $gauge-diameter;
+    height: $gauge-diameter;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .gaugejs-dial {
+        display: block;
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+        
+        .gaugejs-dial-half {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        
+        .gaugejs-dial-left-half {
+            @extend .gaugejs-dial-half;
+        }
+
+        .gaugejs-dial-right-half {
+            @extend .gaugejs-dial-half;
+            left: 50%;
+        }
+
+        .gaugejs-dial-wrap {
+            position: absolute;
+                
+            width: 200%;
+            height: 50%;
+
+            overflow: hidden;
+        
+            transform-origin: bottom center;
+        }
+        
+        $dial-angle-offset: (360deg - $dial-angle)/2;
+
+        .gaugejs-dial-left-wrap {
+            @extend .gaugejs-dial-wrap;
+            left: 0;
+            transform: rotate(-$dial-angle-offset);
+        }
+
+        .gaugejs-dial-right-wrap {
+            @extend .gaugejs-dial-wrap;
+            right: 0;
+            transform: rotate($dial-angle-offset);
+        }
+        
+        @each $type in left, right, warning, danger {
+            .gaugejs-dial-#{$type} {
+                position: absolute;
+            
+                width: 100%;
+                height: 200%;
+
+                border-radius: 100%;
+
+                border: $dial-width solid $base-dial-color;
+            }
+        }
+
+        
+        .gaugejs-dial-warning-wrap {
+            @extend .gaugejs-dial-wrap;
+            
+            width: 100%;
+            height: 100%;
+
+            transform: rotate(180deg - $warning-dial-angle);
+            
+            .gaugejs-dial-warning {
+                border-color: $warning-dial-color;
+            }
+
+        }
+        .gaugejs-dial-danger-wrap {
+            @extend .gaugejs-dial-warning-wrap;
+            
+            transform: rotate(180deg - $danger-dial-angle);
+
+            .gaugejs-dial-danger {
+                border-color: $danger-dial-color;
+            }
+        }
+    }
+
+
+    .gaugejs-hand {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        transform: rotate(60deg);
+
+        transition: transform .5s ease;
+
+        &:hover {
+            transform: rotate(300deg);
+        }
+
+        .gaugejs-hand-arrow {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            margin-left: -$hand-width/2;
+
+            width: 0; 
+            height: 0;
+
+            border-left: $hand-width/2 solid transparent;
+            border-right: $hand-width/2 solid transparent;
+            
+            border-top: $hand-length solid $hand-color;
+
+        }
+
+        .gaugejs-hand-center {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            margin-left: -$hand-center-radius/2;
+            margin-top: -$hand-center-radius/2;
+
+            width: $hand-center-radius;
+            height: $hand-center-radius;
+
+            background: $hand-color;
+
+            border-radius: 100%;
+        }
+    }
+}
