@@ -66,7 +66,7 @@ function Gauge ( element, options ) {
 
     // DOM elements 
     this.el         = element;
-    this.handEl     = element.getElementsByClassName('gaugejs-hand')[0];
+    this.handEl     = element.getElementsByClassName('gaugejs-hand-wrap')[0];
     this.captionsEl = element.getElementsByClassName('gaugejs-captions')[0];
 
     if ( window.jQuery )
@@ -112,12 +112,15 @@ Gauge.prototype.extend = function ( obj ) {
 }
 
 // calculates actual hand angle
-Gauge.prototype._calculateAngle = function ( angle, position ) {
+Gauge.prototype._calculateAngle = function ( angle, position, getter ) {
 
     var angle      = angle    || this.get('angle'),
         position   = position || this.get('position'),
         percentage = position / (this.get('marks').length - 1);
         handAngle  = (360 - angle) / 2 + angle * percentage;
+
+    if ( getter )
+        return handAngle;
 
     return this.set('handAngle', handAngle)
                .moveHand();
@@ -132,8 +135,31 @@ Gauge.prototype.moveHand = function ( angle ) {
     return this;
 }
 
+// drops custom marks on a gauge
+Gauge.prototype.render = function () {
+    var marks = this.get( 'marks' ),
+        markList = this.captionsEl
+                       .getElementsByTagName( 'ul' )[0];
 
-Gauge.prototype._init = Gauge.prototype.moveHand;
+    for ( var i in marks ) {
+        var mark  = window.document.createElement( 'li' ),
+            angle = this._calculateAngle(null, i, true);
+
+        mark.innerHTML = '<span>' + marks[i] + '</span>';
+
+        mark.style.transform = mark.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+
+        var span = mark.getElementsByTagName( 'span' )[0];
+
+        span.style.transform = span.style[prefix.lowercase + 'Transform'] = 'rotate(-' + angle + 'deg)';
+
+        markList.appendChild(mark);
+    }
+
+    return this.moveHand();
+}
+
+Gauge.prototype._init = Gauge.prototype.render;
 
 if ( typeof noGlobal === typeof undefined ) {
     window.Gauge = Gauge;
@@ -144,6 +170,9 @@ return Gauge;
 }));
 
 
-var thegauge = new Gauge( document.getElementById( 'gauge' ), { position : 4 } );
+var thegauge = new Gauge( document.getElementById( 'gauge' ), { 
+    marks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'daym'],
+    position : 5
+});
 
 console.log( thegauge );

@@ -79,32 +79,105 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-transform: rotate(60deg);
-        -ms-transform: rotate(60deg);
-            transform: rotate(60deg);
-    -webkit-transition: -webkit-transform 0.5s ease;
-            transition: transform 0.5s ease; }
-    .gaugejs .gaugejs-hand:hover {
-      -webkit-transform: rotate(300deg);
-          -ms-transform: rotate(300deg);
-              transform: rotate(300deg); }
-    .gaugejs .gaugejs-hand .gaugejs-hand-arrow {
+    overflow: hidden; }
+    .gaugejs .gaugejs-hand .gaugejs-hand-wrap {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -6px;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 310px solid #1e98e4; }
-    .gaugejs .gaugejs-hand .gaugejs-hand-center {
+      width: 100%;
+      height: 100%;
+      -webkit-transition: -webkit-transform 0.5s ease;
+              transition: transform 0.5s ease; }
+      .gaugejs .gaugejs-hand .gaugejs-hand-wrap .gaugejs-hand-arrow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -6px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 310px solid #1e98e4; }
+      .gaugejs .gaugejs-hand .gaugejs-hand-wrap .gaugejs-hand-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        width: 20px;
+        height: 20px;
+        background: #1e98e4;
+        border-radius: 100%; }
+  .gaugejs .gaugejs-captions {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+    font-family: Helvetica, Arial, Sans-Serif;
+    font-size: 22px;
+    line-height: 1em;
+    color: #666666; }
+    .gaugejs .gaugejs-captions ul {
+      display: block;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -10px;
-      margin-top: -10px;
-      width: 20px;
-      height: 20px;
-      background: #1e98e4;
-      border-radius: 100%; }
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      /*&:hover {
+                li {
+                    transform: rotate(220deg);
+
+                    span {
+                        transform: rotate(-220deg);
+                    }
+                }
+            }*/ }
+      .gaugejs .gaugejs-captions ul li {
+        display: block;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 22px;
+        height: 22px;
+        top: 50%;
+        left: 50%;
+        margin-top: 320px;
+        margin-left: -11px;
+        -webkit-transform-origin: center -320px;
+            -ms-transform-origin: center -320px;
+                transform-origin: center -320px;
+        -webkit-transition: all 1s ease;
+                transition: all 1s ease;
+        text-align: center;
+        font: inherit; }
+        .gaugejs .gaugejs-captions ul li span {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          text-align: inherit;
+          font: inherit;
+          -webkit-transform-origin: center;
+              -ms-transform-origin: center;
+                  transform-origin: center;
+          -webkit-transition: all 1s ease;
+                  transition: all 1s ease; }
+        .gaugejs .gaugejs-captions ul li:before {
+          display: block;
+          position: absolute;
+          content: "";
+          width: 2px;
+          height: 7px;
+          top: -10px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          background: #666666; }
+    .gaugejs .gaugejs-captions.gaugejs-captions-inner li {
+      margin-top: 260px;
+      -webkit-transform-origin: center -260px;
+          -ms-transform-origin: center -260px;
+              transform-origin: center -260px; }
+      .gaugejs .gaugejs-captions.gaugejs-captions-inner li:before {
+        top: auto;
+        bottom: -10px; }
