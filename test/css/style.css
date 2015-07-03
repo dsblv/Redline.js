@@ -1,0 +1,50 @@
+.gauge {
+    display: block;
+    position: relative;
+    margin: 100px auto;
+
+    width: 800px;
+    height: 800px;
+}
+
+    .gauge .settings {
+        display: block;
+    }
+
+        .gauge .settings .line {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+            
+            .gauge .settings .line div {
+                display: block;
+                position: relative;
+            }
+
+            .gauge .settings .line .base {
+                width: 60%;
+                height: 4px;
+                background-color: #777;
+            }
+
+                .gauge .settings .line div {
+                    height: 100%;
+                }
+
+                .gauge .settings .line .warning {
+                    width: 30%;
+                    background-color: yellow;
+                }
+
+                    .gauge .settings .line .danger {
+                        width: 60%;
+                        background-color: red;
+                    }
+
+        .gauge .settings .captions {
+            font-family: Helvetica, Arial, Sans-Serif;
+            font-size: 12px;
+            color: #777;
+            margin: 5px;
+        }
