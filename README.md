@@ -1,2 +1,10 @@
-<h1>Gauge.js</h1>
-<p>CSS-customizable gauge powered by JavaScript</p>
+#Redline.js#
+
+Highly flexible JavaScript-driven html gauge.
+
+###Features###
+
+* Lightweight
+* Fully customizable via CSS
+* Custom marks & aperture
+* Compatible with jQuery

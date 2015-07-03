@@ -14,8 +14,8 @@ var gulp        = require('gulp'),
 var path = {
     build  : 'dist/',
     source : {
-        script : 'src/js/gauge.js',
-        style  : 'src/scss/gauge.scss'
+        script : 'src/js/redline.js',
+        style  : 'src/scss/redline.scss'
     },
     watch  : {
         script : 'src/js/**/*',

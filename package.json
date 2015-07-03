@@ -1,8 +1,8 @@
 {
-  "name": "Gauge.js",
+  "name": "redline",
   "version": "0.0.1",
   "description": "Flexible html gauge",
-  "main": "dist/gauge.js",
+  "main": "dist/redline.js",
   "authors": [
     "Dmitry Sobolev"
   ],
