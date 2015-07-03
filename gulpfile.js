@@ -5,37 +5,17 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
-    rjs = require('gulp-requirejs'),
     rimraf = require('rimraf');
 
 var path = {
-    build: 'dist/',
-    src: 'src/js/',
-    watch: 'src/**/*'
+    build  : 'dist/',
+    source : 'src/js/gauge.js',
+    watch  : 'src/**/*'
 };
 
 gulp.task('js:build', function () {
 
-    /*rjs({
-        baseUrl  : 'src/js/',
-        name     : 'gauge',
-        out      : 'dist/gauge.js',
-        optimize : 'none',
-
-        // Include dependencies loaded with require
-        findNestedDependencies: true,
-        // Avoid inserting define() placeholder
-        skipModuleInsertion: true,
-        // Avoid breaking semicolons inserted by r.js
-        skipSemiColonInsertion: true,
-        wrap: {
-            startFile: 'src/js/intro.js',
-            endFile: 'src/js/outro.js'
-        }
-    })
-        .pipe(gulp.dest(path.build));*/
-
-    gulp.src(path.src + 'gauge.js')
+    gulp.src(path.source)
         .pipe(rigger())
         .pipe(sourcemaps.init())
         .pipe(uglify())
