@@ -1,2 +1,110 @@
-.gaugejs{display:block;position:relative;width:600px;height:600px}.gaugejs *{box-sizing:border-box}.gaugejs .gaugejs-dial{display:block;position:absolute;width:100%;height:100%}.gaugejs .gaugejs-dial .gaugejs-dial-half,.gaugejs .gaugejs-dial .gaugejs-dial-left-half,.gaugejs .gaugejs-dial .gaugejs-dial-right-half{position:absolute;width:50%;height:100%;top:0;left:0;overflow:hidden}.gaugejs .gaugejs-dial .gaugejs-dial-right-half{left:50%}.gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap,.gaugejs .gaugejs-dial .gaugejs-dial-left-wrap,.gaugejs .gaugejs-dial .gaugejs-dial-right-wrap,.gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap,.gaugejs .gaugejs-dial .gaugejs-dial-wrap{position:absolute;width:200%;height:50%;overflow:hidden;-webkit-transform-origin:bottom center;-ms-transform-origin:bottom center;transform-origin:bottom center}.gaugejs .gaugejs-dial .gaugejs-dial-left-wrap{left:0;-webkit-transform:rotate(-30deg);-ms-transform:rotate(-30deg);transform:rotate(-30deg)}.gaugejs .gaugejs-dial .gaugejs-dial-right-wrap{right:0;-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg)}.gaugejs .gaugejs-dial .gaugejs-dial-danger,.gaugejs .gaugejs-dial .gaugejs-dial-left,.gaugejs .gaugejs-dial .gaugejs-dial-right,.gaugejs .gaugejs-dial .gaugejs-dial-warning{position:absolute;width:100%;height:200%;border-radius:100%;border:4px solid #666}.gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap,.gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap{width:100%;height:100%;-webkit-transform:rotate(120deg);-ms-transform:rotate(120deg);transform:rotate(120deg)}.gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-warning,.gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap .gaugejs-dial-warning{border-color:orange}.gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap{-webkit-transform:rotate(160deg);-ms-transform:rotate(160deg);transform:rotate(160deg)}.gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-danger{border-color:red}.gaugejs .gaugejs-hand{position:absolute;width:100%;height:100%;-webkit-transform:rotate(60deg);-ms-transform:rotate(60deg);transform:rotate(60deg);-webkit-transition:-webkit-transform .5s ease;transition:transform .5s ease}.gaugejs .gaugejs-hand:hover{-webkit-transform:rotate(300deg);-ms-transform:rotate(300deg);transform:rotate(300deg)}.gaugejs .gaugejs-hand .gaugejs-hand-arrow{position:absolute;top:50%;left:50%;margin-left:-6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:310px solid #1e98e4}.gaugejs .gaugejs-hand .gaugejs-hand-center{position:absolute;top:50%;left:50%;margin-left:-10px;margin-top:-10px;width:20px;height:20px;background:#1e98e4;border-radius:100%}
-/*# sourceMappingURL=gauge.css.map */
+.gaugejs {
+  display: block;
+  position: relative;
+  width: 600px;
+  height: 600px; }
+  .gaugejs * {
+    box-sizing: border-box; }
+  .gaugejs .gaugejs-dial {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-half, .gaugejs .gaugejs-dial .gaugejs-dial-left-half, .gaugejs .gaugejs-dial .gaugejs-dial-right-half {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-right-half {
+      left: 50%; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-left-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-right-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+      position: absolute;
+      width: 200%;
+      height: 50%;
+      overflow: hidden;
+      -webkit-transform-origin: bottom center;
+          -ms-transform-origin: bottom center;
+              transform-origin: bottom center; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-left-wrap {
+      left: 0;
+      -webkit-transform: rotate(-30deg);
+          -ms-transform: rotate(-30deg);
+              transform: rotate(-30deg); }
+    .gaugejs .gaugejs-dial .gaugejs-dial-right-wrap {
+      right: 0;
+      -webkit-transform: rotate(30deg);
+          -ms-transform: rotate(30deg);
+              transform: rotate(30deg); }
+    .gaugejs .gaugejs-dial .gaugejs-dial-left {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      border-radius: 100%;
+      border: 4px solid #666666; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-right {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      border-radius: 100%;
+      border: 4px solid #666666; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-warning {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      border-radius: 100%;
+      border: 4px solid #666666; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-danger {
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      border-radius: 100%;
+      border: 4px solid #666666; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+      width: 100%;
+      height: 100%;
+      -webkit-transform: rotate(120deg);
+          -ms-transform: rotate(120deg);
+              transform: rotate(120deg); }
+      .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap .gaugejs-dial-warning, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-warning {
+        border-color: #ffa500; }
+    .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+      -webkit-transform: rotate(160deg);
+          -ms-transform: rotate(160deg);
+              transform: rotate(160deg); }
+      .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-danger {
+        border-color: #ff0000; }
+  .gaugejs .gaugejs-hand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+            transform: rotate(60deg);
+    -webkit-transition: -webkit-transform 0.5s ease;
+            transition: transform 0.5s ease; }
+    .gaugejs .gaugejs-hand:hover {
+      -webkit-transform: rotate(300deg);
+          -ms-transform: rotate(300deg);
+              transform: rotate(300deg); }
+    .gaugejs .gaugejs-hand .gaugejs-hand-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -6px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 310px solid #1e98e4; }
+    .gaugejs .gaugejs-hand .gaugejs-hand-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -10px;
+      margin-top: -10px;
+      width: 20px;
+      height: 20px;
+      background: #1e98e4;
+      border-radius: 100%; }

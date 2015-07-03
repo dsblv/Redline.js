@@ -7,6 +7,6 @@ return Gauge;
 }));
 
 
-var thegauge = new Gauge(document.getElementById( 'gauge' ));
+var thegauge = new Gauge( document.getElementById( 'gauge' ), { position : 4 } );
 
 console.log( thegauge );

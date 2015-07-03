@@ -3,7 +3,7 @@
 $gauge-diameter: 600px;
 $dial-width: 4px;
 
-$dial-angle: 300deg;
+$dial-angle: 240deg;
 $warning-dial-angle: 60deg;
 $danger-dial-angle: 20deg;
 
@@ -64,18 +64,18 @@ $hand-color: #1e98e4;
             transform-origin: bottom center;
         }
         
-        $dial-angle-offset: (360deg - $dial-angle)/2;
+        $dial-angle-offset: (360deg - $dial-angle)/2 - 90deg;
 
         .gaugejs-dial-left-wrap {
             @extend .gaugejs-dial-wrap;
             left: 0;
-            transform: rotate(-$dial-angle-offset);
+            transform: rotate($dial-angle-offset);
         }
 
         .gaugejs-dial-right-wrap {
             @extend .gaugejs-dial-wrap;
             right: 0;
-            transform: rotate($dial-angle-offset);
+            transform: rotate(-$dial-angle-offset);
         }
         
         @each $type in left, right, warning, danger {
