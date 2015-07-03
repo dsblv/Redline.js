@@ -27,7 +27,7 @@ function Gauge ( element, options ) {
     var defaults = {
         aperture    : 180,
         marks       : [0, 1, 2, 3, 4, 5, 6],
-        innerMarks  : true,
+        innerMarks  : false,
         position    : 0
     }
 
