@@ -1,3 +1,109 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    background: #111;
+}
+
+/* redline.js gauge customization */
 #gauge {
     margin: 100px auto;
+}
+
+/* base dial thickness and color */
+#gauge .gaugejs-dial-left,
+#gauge .gaugejs-dial-right,
+#gauge .gaugejs-dial-warning,
+#gauge .gaugejs-dial-danger {
+    border-width: 3px;
+    border-color: #ebebeb;
+}
+
+/* additional two colors */
+#gauge .gaugejs-dial-warning {
+    border-color: #ffa500;
+}
+#gauge .gaugejs-dial-danger {
+    border-color: red;
+}
+
+/* warninig & danger zones occupation */
+/* note: warning zone width includes danger zone */
+#gauge .gaugejs-dial-warning-wrap {
+    transform: rotate(130deg); /* (180deg - 50deg): so warning line is 50deg wide */
+}
+
+#gauge .gaugejs-dial-danger-wrap {
+    transform: rotate(160deg); /* (180deg - 20deg): so warning line is 20deg wide */
+}
+
+
+/* animation speed for tthe arrow */
+#gauge .gaugejs-hand-wrap {
+    transition: transform .5s ease;
+}
+
+/* arrow size */
+#gauge .gaugejs-hand-arrow {
+    /* let arrow width be 10px */
+    margin-left: -3px; /* half */
+
+    border-left: 3px solid transparent; /* half */
+    border-right: 3px solid transparent; /* half */
+    
+    border-top: 130px solid red; /* length & color */
+}
+
+/* arrow root */
+#gauge .gaugejs-hand-center {
+    /* let the radius be 10px */
+
+    margin-left: -6px;
+    margin-top: -6px;
+    
+    /* diameter */
+    width: 12px;
+    height: 12px;
+
+    background: red; /* color */
+}
+
+
+/* Marks & captions */
+#gauge .gaugejs-captions {  
+    font-family: Montserrat, Serif;
+    font-size: 18px;
+    line-height: 1em;
+    color: white;
+}
+
+#gauge .gaugejs-captions li {
+    width: 18px; /* space for numbers*/
+    height: 18px;
+    margin-left: -9px; /* half of it */
+    
+    margin-top: 170px; /* from center */
+    transform-origin: center -170px;
+}
+
+
+/* marks */
+#gauge .gaugejs-captions li:before {
+    width: 1px;
+    height: 8px;
+
+    top: -10px;
+
+    background: white;
+}
+
+/* when marks are inside */
+#gauge .gaugejs-captions.gaugejs-captions-inner li {
+    /* from center */
+    margin-top: 110px;
+    transform-origin: center -110px;
+}
+
+#gauge .gaugejs-captions.gaugejs-captions-inner li:before {
+    top: auto;
+    bottom: -10px;
 }

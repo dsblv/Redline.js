@@ -189,6 +189,12 @@ var prefix = (function () {
 })();
 
 
+function rotate( element, angle ) {
+    element.style.transform =
+    element.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+}
+
+
 /**
  * @param {Element} element
  * @param {Object} options
@@ -268,7 +274,7 @@ Gauge.prototype._calculateAngle = function ( angle, position, getter ) {
 Gauge.prototype.moveHand = function ( angle ) {
     var angle = angle || this.get('handAngle');
 
-    this.handEl.style.transform = this.handEl.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+    rotate( this.handEl, angle );
 
     return this;
 }
@@ -279,8 +285,8 @@ Gauge.prototype.render = function () {
         leftHalf    = this.el.getElementsByClassName('gaugejs-dial-left-wrap')[0],
         rightHalf   = this.el.getElementsByClassName('gaugejs-dial-right-wrap')[0];
 
-    leftHalf.style.transform = leftHalf.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
-    rightHalf.style.transform = rightHalf.style[prefix.lowercase + 'Transform'] = 'rotate(' + -angle + 'deg)';
+    rotate( leftHalf, angle );
+    rotate( rightHalf, -angle );
 
     return this.renderMarks();
 }
@@ -292,17 +298,18 @@ Gauge.prototype.renderMarks = function () {
                        .getElementsByTagName( 'ul' )[0];
 
     for ( var i in marks ) {
+        /* every mark should be placed and rotated the right way */
         var mark  = window.document.createElement( 'li' ),
             angle = this._calculateAngle(null, i, true);
 
         mark.innerHTML = '<span><b>' + marks[i] + '</b></span>';
-
-        mark.style.transform = mark.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
-
+        rotate( mark, angle );
+        
         var span = mark.getElementsByTagName( 'span' )[0];
+        rotate( span, -angle );
 
-        span.style.transform = span.style[prefix.lowercase + 'Transform'] = 'rotate(-' + angle + 'deg)';
 
+        /* nice alignment for long captions */
         if ( marks[i].toString().length > 1 ) {
             if ( i < marks.length / 2 )
                 mark.className = 'gaugejs-caption-left-fit';
@@ -310,11 +317,13 @@ Gauge.prototype.renderMarks = function () {
                 mark.className = 'gaugejs-caption-right-fit';
         }
 
+        /* ready to go */
         markList.appendChild(mark);
     }
 
+    /* move marks inside if required */
     if ( this.get('innerMarks') )
-            this.captionsEl.className += ' gaugejs-captions-inner';
+        this.captionsEl.className += ' gaugejs-captions-inner';
 
     return this.moveHand();
 }
@@ -332,11 +341,3 @@ if ( window.jQuery && window.jQuery.bridget ) {
 return Gauge;
 
 }));
-
-
-/*var thegauge = new Gauge( document.getElementById( 'gauge' ), { 
-    marks: [1, 'hello', 3, 4, 5, 6, 7, 8, 9, 'daym'],
-    position : 5.6
-});
-
-console.log( thegauge );*/

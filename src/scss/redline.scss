@@ -9,12 +9,12 @@ $danger-dial-angle: 20deg;
 
 $hand-length: 100px;
 $hand-width: 12px;
-$hand-center-radius: 20px;
+$hand-center-radius: 10px;
 
-$base-dial-color: #666666;
-$warning-dial-color: #ffa500;
-$danger-dial-color: #ff0000;
-$hand-color: #1e98e4;
+$base-dial-color: black;
+$warning-dial-color: orange;
+$danger-dial-color: red;
+$hand-color: blue;
 $captions-color: $base-dial-color;
 
 
@@ -63,32 +63,37 @@ $captions-color: $base-dial-color;
             overflow: hidden;
         
             transform-origin: bottom center;
+            transition: transform .5s ease;
         }
         
-        $dial-angle-offset: (360deg - $dial-aperture)/2 - 90deg;
+        //$dial-angle-offset: (360deg - $dial-aperture)/2 - 90deg;
 
         .gaugejs-dial-left-wrap {
             @extend .gaugejs-dial-wrap;
             left: 0;
-            transform: rotate($dial-angle-offset);
+            transform: rotate(90deg);
         }
 
         .gaugejs-dial-right-wrap {
             @extend .gaugejs-dial-wrap;
             right: 0;
-            transform: rotate(-$dial-angle-offset);
+            transform: rotate(-90deg);
+        }
+
+        .gaugejs-dial {
+            position: absolute;
+        
+            width: 100%;
+            height: 200%;
+
+            border-radius: 100%;
+
+            border: $dial-width solid $base-dial-color;
         }
         
         @each $type in left, right, warning, danger {
             .gaugejs-dial-#{$type} {
-                position: absolute;
-            
-                width: 100%;
-                height: 200%;
-
-                border-radius: 100%;
-
-                border: $dial-width solid $base-dial-color;
+                @extend .gaugejs-dial;
             }
         }
 
@@ -131,7 +136,9 @@ $captions-color: $base-dial-color;
             width: 100%;
             height: 100%;
 
-            transition: transform .5s ease;
+            transition: all .5s ease;
+
+            transform: rotate(180deg);
 
             .gaugejs-hand-arrow {
                 position: absolute;
@@ -157,11 +164,11 @@ $captions-color: $base-dial-color;
                 top: 50%;
                 left: 50%;
 
-                margin-left: -$hand-center-radius/2;
-                margin-top: -$hand-center-radius/2;
+                margin-left: -$hand-center-radius;
+                margin-top: -$hand-center-radius;
 
-                width: $hand-center-radius;
-                height: $hand-center-radius;
+                width: $hand-center-radius*2;
+                height: $hand-center-radius*2;
 
                 background: $hand-color;
 

@@ -5,7 +5,7 @@
     <title>Gauge.js test page</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="../dist/gauge.min.css">
+    <link rel="stylesheet" href="../dist/redline.min.css">
 
 </head>
 <body>
@@ -37,6 +37,11 @@
             </div>
         </div>
         
+        <div class="gaugejs-captions">
+            <ul>
+            </ul>
+        </div>
+
         <div class="gaugejs-hand">
             <div class="gaugejs-hand-wrap">
                 <div class="gaugejs-hand-arrow"></div>
@@ -44,13 +49,19 @@
             </div>
         </div>
 
-        <div class="gaugejs-captions">
-            <ul>
-            </ul>
-        </div>
     </div>
     
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="../dist/gauge.min.js"></script>
+    <script src="../dist/redline.min.js"></script>
+
+    <script>
+
+        $(function () {
+            $('#gauge').gauge({
+                position: 5
+            });
+        });
+
+    </script>
 </body>
 </html>
