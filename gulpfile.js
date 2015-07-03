@@ -65,11 +65,12 @@ gulp.task('clean', function (cb) {
 gulp.task('watch', function(){
 
     for (var target in path.watch)
-        watch(path.watch[target], function(event, cb) {
-            gulp.start(target + ':build');
-        });
-
+        (function (target) {
+            watch(path.watch[target], function(event, cb) {
+                gulp.start(target + ':build');
+            });
+        })(target);
 });
 
-// Ignition
+
 gulp.task('default', ['build', 'watch']);
