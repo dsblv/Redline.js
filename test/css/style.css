@@ -10,40 +10,40 @@ body {
 }
 
 /* base dial thickness and color */
-#gauge .gaugejs-dial-left,
-#gauge .gaugejs-dial-right,
-#gauge .gaugejs-dial-warning,
-#gauge .gaugejs-dial-danger {
+#gauge .redline-dial-left,
+#gauge .redline-dial-right,
+#gauge .redline-dial-warning,
+#gauge .redline-dial-danger {
     border-width: 3px;
     border-color: #ebebeb;
 }
 
 /* additional two colors */
-#gauge .gaugejs-dial-warning {
+#gauge .redline-dial-warning {
     border-color: #ffa500;
 }
-#gauge .gaugejs-dial-danger {
+#gauge .redline-dial-danger {
     border-color: red;
 }
 
 /* warninig & danger zones occupation */
 /* note: warning zone width includes danger zone */
-#gauge .gaugejs-dial-warning-wrap {
+#gauge .redline-dial-warning-wrap {
     transform: rotate(130deg); /* (180deg - 50deg): so warning line is 50deg wide */
 }
 
-#gauge .gaugejs-dial-danger-wrap {
+#gauge .redline-dial-danger-wrap {
     transform: rotate(160deg); /* (180deg - 20deg): so warning line is 20deg wide */
 }
 
 
 /* animation speed for tthe arrow */
-#gauge .gaugejs-hand-wrap {
+#gauge .redline-hand-wrap {
     transition: transform .5s ease;
 }
 
 /* arrow size */
-#gauge .gaugejs-hand-arrow {
+#gauge .redline-hand-arrow {
     /* let arrow width be 10px */
     margin-left: -3px; /* half */
 
@@ -54,7 +54,7 @@ body {
 }
 
 /* arrow root */
-#gauge .gaugejs-hand-center {
+#gauge .redline-hand-center {
     /* let the radius be 10px */
 
     margin-left: -6px;
@@ -69,14 +69,14 @@ body {
 
 
 /* Marks & captions */
-#gauge .gaugejs-captions {  
+#gauge .redline-captions {  
     font-family: Montserrat, Serif;
     font-size: 18px;
     line-height: 1em;
     color: white;
 }
 
-#gauge .gaugejs-captions li {
+#gauge .redline-captions li {
     width: 18px; /* space for numbers*/
     height: 18px;
     margin-left: -9px; /* half of it */
@@ -87,7 +87,7 @@ body {
 
 
 /* marks */
-#gauge .gaugejs-captions li:before {
+#gauge .redline-captions li:before {
     width: 1px;
     height: 8px;
 
@@ -97,13 +97,13 @@ body {
 }
 
 /* when marks are inside */
-#gauge .gaugejs-captions.gaugejs-captions-inner li {
+#gauge .redline-captions.redline-captions-inner li {
     /* from center */
     margin-top: 110px;
     transform-origin: center -110px;
 }
 
-#gauge .gaugejs-captions.gaugejs-captions-inner li:before {
+#gauge .redline-captions.redline-captions-inner li:before {
     top: auto;
     bottom: -10px;
 }

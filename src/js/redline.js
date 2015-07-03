@@ -1,7 +1,7 @@
 /* !
- * Gauge.js
+ * Redline
  * Cool customizable html gauge
- * //github.com/dsblv/Gauge.js
+ * //github.com/dsblv/redline.js
  * by Dmitry Sobolev
  */
 
@@ -21,7 +21,7 @@ function rotate( element, angle ) {
  * @param {Object} options
  * @constructor
  */
-function Gauge ( element, options ) {
+function Redline ( element, options ) {
 
     // default values
     var defaults = {
@@ -33,8 +33,8 @@ function Gauge ( element, options ) {
 
     // DOM elements 
     this.el         = element;
-    this.handEl     = element.getElementsByClassName('gaugejs-hand-wrap')[0];
-    this.captionsEl = element.getElementsByClassName('gaugejs-captions')[0];
+    this.handEl     = element.getElementsByClassName('redline-hand-wrap')[0];
+    this.captionsEl = element.getElementsByClassName('redline-captions')[0];
 
     if ( window.jQuery )
         this.$el = window.jQuery( this.el );
@@ -48,12 +48,12 @@ function Gauge ( element, options ) {
 }
 
 // getter method
-Gauge.prototype.get = function ( key ) {
+Redline.prototype.get = function ( key ) {
     return this.attributes[key];
 }
 
 // setter method
-Gauge.prototype.set = function ( key, value ) {
+Redline.prototype.set = function ( key, value ) {
     if ( typeof key === 'object' )
         return this.extend( key );
 
@@ -66,7 +66,7 @@ Gauge.prototype.set = function ( key, value ) {
 }
 
 // sets multiple values
-Gauge.prototype.extend = function ( obj ) {
+Redline.prototype.extend = function ( obj ) {
     var i = 0;
 
     if ( typeof obj === 'object' )
@@ -77,7 +77,7 @@ Gauge.prototype.extend = function ( obj ) {
 }
 
 // calculates actual hand angle
-Gauge.prototype._calculateAngle = function ( angle, position, getter ) {
+Redline.prototype._calculateAngle = function ( angle, position, getter ) {
 
     var angle      = angle    || this.get('aperture'),
         position   = position || this.get('position'),
@@ -92,7 +92,7 @@ Gauge.prototype._calculateAngle = function ( angle, position, getter ) {
 }
 
 // moves the arrow to specific angle
-Gauge.prototype.moveHand = function ( angle ) {
+Redline.prototype.moveHand = function ( angle ) {
     var angle = angle || this.get('handAngle');
 
     rotate( this.handEl, angle );
@@ -101,10 +101,10 @@ Gauge.prototype.moveHand = function ( angle ) {
 }
 
 
-Gauge.prototype.render = function () {
+Redline.prototype.render = function () {
     var angle       = (360 - this.get('aperture'))/2 - 90,
-        leftHalf    = this.el.getElementsByClassName('gaugejs-dial-left-wrap')[0],
-        rightHalf   = this.el.getElementsByClassName('gaugejs-dial-right-wrap')[0];
+        leftHalf    = this.el.getElementsByClassName('redline-dial-left-wrap')[0],
+        rightHalf   = this.el.getElementsByClassName('redline-dial-right-wrap')[0];
 
     rotate( leftHalf, angle );
     rotate( rightHalf, -angle );
@@ -113,7 +113,7 @@ Gauge.prototype.render = function () {
 }
 
 // drops custom marks on a gauge
-Gauge.prototype.renderMarks = function () {
+Redline.prototype.renderMarks = function () {
     var marks = this.get( 'marks' ),
         markList = this.captionsEl
                        .getElementsByTagName( 'ul' )[0];
@@ -133,9 +133,9 @@ Gauge.prototype.renderMarks = function () {
         /* nice alignment for long captions */
         if ( marks[i].toString().length > 1 ) {
             if ( i < marks.length / 2 )
-                mark.className = 'gaugejs-caption-left-fit';
+                mark.className = 'redline-caption-left-fit';
             else
-                mark.className = 'gaugejs-caption-right-fit';
+                mark.className = 'redline-caption-right-fit';
         }
 
         /* ready to go */
@@ -144,11 +144,11 @@ Gauge.prototype.renderMarks = function () {
 
     /* move marks inside if required */
     if ( this.get('innerMarks') )
-        this.captionsEl.className += ' gaugejs-captions-inner';
+        this.captionsEl.className += ' redline-captions-inner';
 
     return this.moveHand();
 }
 
-Gauge.prototype._init = Gauge.prototype.render;
+Redline.prototype._init = Gauge.prototype.render;
 
 //= outro

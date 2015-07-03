@@ -1,25 +1,25 @@
-.gaugejs {
+.redline {
   display: block;
   position: relative;
   width: 300px;
   height: 300px; }
-  .gaugejs * {
+  .redline * {
     box-sizing: border-box; }
-  .gaugejs .gaugejs-dial, .gaugejs .gaugejs-dial .gaugejs-dial-left, .gaugejs .gaugejs-dial .gaugejs-dial-right, .gaugejs .gaugejs-dial .gaugejs-dial-warning, .gaugejs .gaugejs-dial .gaugejs-dial-danger {
+  .redline .redline-dial, .redline .redline-dial .redline-dial-left, .redline .redline-dial .redline-dial-right, .redline .redline-dial .redline-dial-warning, .redline .redline-dial .redline-dial-danger {
     display: block;
     position: absolute;
     width: 100%;
     height: 100%; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-half, .gaugejs .gaugejs-dial .gaugejs-dial-left-half, .gaugejs .gaugejs-dial .gaugejs-dial-right-half {
+    .redline .redline-dial .redline-dial-half, .redline .redline-dial .redline-dial-left-half, .redline .redline-dial .redline-dial-right-half {
       position: absolute;
       width: 50%;
       height: 100%;
       top: 0;
       left: 0;
       overflow: hidden; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-right-half {
+    .redline .redline-dial .redline-dial-right-half {
       left: 50%; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-left-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-right-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+    .redline .redline-dial .redline-dial-wrap, .redline .redline-dial .redline-dial-left-wrap, .redline .redline-dial .redline-dial-right-wrap, .redline .redline-dial .redline-dial-warning-wrap, .redline .redline-dial .redline-dial-danger-wrap {
       position: absolute;
       width: 200%;
       height: 50%;
@@ -29,42 +29,42 @@
               transform-origin: bottom center;
       -webkit-transition: -webkit-transform 0.5s ease;
               transition: transform 0.5s ease; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-left-wrap {
+    .redline .redline-dial .redline-dial-left-wrap {
       left: 0;
       -webkit-transform: rotate(90deg);
           -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
-    .gaugejs .gaugejs-dial .gaugejs-dial-right-wrap {
+    .redline .redline-dial .redline-dial-right-wrap {
       right: 0;
       -webkit-transform: rotate(-90deg);
           -ms-transform: rotate(-90deg);
               transform: rotate(-90deg); }
-    .gaugejs .gaugejs-dial .gaugejs-dial, .gaugejs .gaugejs-dial .gaugejs-dial-left, .gaugejs .gaugejs-dial .gaugejs-dial-right, .gaugejs .gaugejs-dial .gaugejs-dial-warning, .gaugejs .gaugejs-dial .gaugejs-dial-danger {
+    .redline .redline-dial .redline-dial, .redline .redline-dial .redline-dial-left, .redline .redline-dial .redline-dial-right, .redline .redline-dial .redline-dial-warning, .redline .redline-dial .redline-dial-danger {
       position: absolute;
       width: 100%;
       height: 200%;
       border-radius: 100%;
       border: 10px solid black; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+    .redline .redline-dial .redline-dial-warning-wrap, .redline .redline-dial .redline-dial-danger-wrap {
       width: 100%;
       height: 100%;
       -webkit-transform: rotate(120deg);
           -ms-transform: rotate(120deg);
               transform: rotate(120deg); }
-      .gaugejs .gaugejs-dial .gaugejs-dial-warning-wrap .gaugejs-dial-warning, .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-warning {
+      .redline .redline-dial .redline-dial-warning-wrap .redline-dial-warning, .redline .redline-dial .redline-dial-danger-wrap .redline-dial-warning {
         border-color: orange; }
-    .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap {
+    .redline .redline-dial .redline-dial-danger-wrap {
       -webkit-transform: rotate(160deg);
           -ms-transform: rotate(160deg);
               transform: rotate(160deg); }
-      .gaugejs .gaugejs-dial .gaugejs-dial-danger-wrap .gaugejs-dial-danger {
+      .redline .redline-dial .redline-dial-danger-wrap .redline-dial-danger {
         border-color: red; }
-  .gaugejs .gaugejs-hand {
+  .redline .redline-hand {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: hidden; }
-    .gaugejs .gaugejs-hand .gaugejs-hand-wrap {
+    .redline .redline-hand .redline-hand-wrap {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -73,7 +73,7 @@
       -webkit-transform: rotate(180deg);
           -ms-transform: rotate(180deg);
               transform: rotate(180deg); }
-      .gaugejs .gaugejs-hand .gaugejs-hand-wrap .gaugejs-hand-arrow {
+      .redline .redline-hand .redline-hand-wrap .redline-hand-arrow {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -83,7 +83,7 @@
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-top: 100px solid blue; }
-      .gaugejs .gaugejs-hand .gaugejs-hand-wrap .gaugejs-hand-center {
+      .redline .redline-hand .redline-hand-wrap .redline-hand-center {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -93,7 +93,7 @@
         height: 20px;
         background: blue;
         border-radius: 100%; }
-  .gaugejs .gaugejs-captions {
+  .redline .redline-captions {
     position: absolute;
     width: 110%;
     height: 110%;
@@ -103,7 +103,7 @@
     font-size: 22px;
     line-height: 1em;
     color: black; }
-    .gaugejs .gaugejs-captions ul {
+    .redline .redline-captions ul {
       display: block;
       position: absolute;
       width: 100%;
@@ -119,7 +119,7 @@
                     }
                 }
             }*/ }
-      .gaugejs .gaugejs-captions ul li {
+      .redline .redline-captions ul li {
         display: block;
         position: absolute;
         margin: 0;
@@ -137,7 +137,7 @@
                 transition: all 1s ease;
         text-align: center;
         font: inherit; }
-        .gaugejs .gaugejs-captions ul li span {
+        .redline .redline-captions ul li span {
           display: block;
           position: absolute;
           width: 100%;
@@ -149,9 +149,9 @@
                   transform-origin: center;
           -webkit-transition: all 1s ease;
                   transition: all 1s ease; }
-          .gaugejs .gaugejs-captions ul li span b {
+          .redline .redline-captions ul li span b {
             font-weight: normal; }
-        .gaugejs .gaugejs-captions ul li:before {
+        .redline .redline-captions ul li:before {
           display: block;
           position: absolute;
           content: "";
@@ -162,23 +162,23 @@
           right: 0;
           margin: auto;
           background: black; }
-        .gaugejs .gaugejs-captions ul li.gaugejs-caption-left-fit span b {
+        .redline .redline-captions ul li.redline-caption-left-fit span b {
           position: absolute;
           right: 0; }
-        .gaugejs .gaugejs-captions ul li.gaugejs-caption-right-fit span b {
+        .redline .redline-captions ul li.redline-caption-right-fit span b {
           position: absolute;
           left: 0; }
-    .gaugejs .gaugejs-captions.gaugejs-captions-inner li {
+    .redline .redline-captions.redline-captions-inner li {
       margin-top: 100px;
       -webkit-transform-origin: center -100px;
           -ms-transform-origin: center -100px;
               transform-origin: center -100px; }
-      .gaugejs .gaugejs-captions.gaugejs-captions-inner li:before {
+      .redline .redline-captions.redline-captions-inner li:before {
         top: auto;
         bottom: -10px; }
-      .gaugejs .gaugejs-captions.gaugejs-captions-inner li.gaugejs-caption-left-fit span b {
+      .redline .redline-captions.redline-captions-inner li.redline-caption-left-fit span b {
         left: 0;
         right: auto; }
-      .gaugejs .gaugejs-captions.gaugejs-captions-inner li.gaugejs-caption-right-fit span b {
+      .redline .redline-captions.redline-captions-inner li.redline-caption-right-fit span b {
         left: auto;
         right: 0; }

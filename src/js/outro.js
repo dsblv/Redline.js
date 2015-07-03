@@ -1,11 +1,12 @@
 if ( typeof noGlobal === typeof undefined ) {
-    window.Gauge = Gauge;
+    window.Redline = Redline;
 }
 
+/* Converting to jquery plugin */
 if ( window.jQuery && window.jQuery.bridget ) {
-    jQuery.bridget( 'gauge', Gauge );
+    jQuery.bridget( 'redline', Redline );
 }
 
-return Gauge;
+return Redline;
 
 }));
