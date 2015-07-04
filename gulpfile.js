@@ -78,6 +78,7 @@ gulp.task('watch', function(){
                 gulp.start(target + ':build');
             });
         })(target);
+
 });
 
 
