@@ -65,3 +65,11 @@ var options = {
 
 $( '#gauge' ).redline( options );
 ```
+
+##Installation##
+
+You can install Redline.js via **npm**:
+
+```
+npm install redline
+```
