@@ -2,6 +2,8 @@
 
 Highly flexible JavaScript-driven html gauge.
 
+[Live Demo](http://dsblv.github.io/Redline.js/)
+
 ##Features##
 
 * Lightweight
