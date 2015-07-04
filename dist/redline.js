@@ -220,7 +220,7 @@ function Redline ( element, options ) {
 
     this.attributes = defaults;
 
-    this.extend( options )
+    this._extend( options )
         ._calculateAngle()
         ._init();
 
@@ -234,7 +234,7 @@ Redline.prototype.get = function ( key ) {
 // setter method
 Redline.prototype.set = function ( key, value ) {
     if ( typeof key === 'object' )
-        return this.extend( key );
+        return this._extend( key );
 
     this.attributes[key] = value;
 
@@ -245,7 +245,7 @@ Redline.prototype.set = function ( key, value ) {
 }
 
 // sets multiple values
-Redline.prototype.extend = function ( obj ) {
+Redline.prototype._extend = function ( obj ) {
     var i = 0;
 
     if ( typeof obj === 'object' )
@@ -280,6 +280,7 @@ Redline.prototype.moveHand = function ( angle ) {
 }
 
 
+// sets angles
 Redline.prototype.render = function () {
     var angle       = (360 - this.get('aperture'))/2 - 90,
         leftHalf    = this.el.getElementsByClassName('redline-dial-left-wrap')[0],
@@ -288,11 +289,11 @@ Redline.prototype.render = function () {
     rotate( leftHalf, angle );
     rotate( rightHalf, -angle );
 
-    return this.renderMarks();
+    return this._renderMarks();
 }
 
 // drops custom marks on a gauge
-Redline.prototype.renderMarks = function () {
+Redline.prototype._renderMarks = function () {
     var marks = this.get( 'marks' ),
         markList = this.captionsEl
                        .getElementsByTagName( 'ul' )[0];
@@ -328,7 +329,12 @@ Redline.prototype.renderMarks = function () {
     return this.moveHand();
 }
 
-Redline.prototype._init = Gauge.prototype.render;
+Redline.prototype._init = Redline.prototype.render;
+
+
+Redline.prototype.point = function ( index ) {
+    return this.set('position', index);
+}
 
 if ( typeof noGlobal === typeof undefined ) {
     window.Redline = Redline;

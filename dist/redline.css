@@ -133,8 +133,6 @@
         -webkit-transform-origin: center -170px;
             -ms-transform-origin: center -170px;
                 transform-origin: center -170px;
-        -webkit-transition: all 1s ease;
-                transition: all 1s ease;
         text-align: center;
         font: inherit; }
         .redline .redline-captions ul li span {
@@ -146,9 +144,7 @@
           font: inherit;
           -webkit-transform-origin: center;
               -ms-transform-origin: center;
-                  transform-origin: center;
-          -webkit-transition: all 1s ease;
-                  transition: all 1s ease; }
+                  transform-origin: center; }
           .redline .redline-captions ul li span b {
             font-weight: normal; }
         .redline .redline-captions ul li:before {

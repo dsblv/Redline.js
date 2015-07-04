@@ -230,8 +230,6 @@ $captions-color: $base-dial-color;
 
                 transform-origin: center ($gauge-diameter/2 + 20px)*(-1);
 
-                transition: all 1s ease;
-
                 text-align: center;
                 font: inherit;
 
@@ -246,7 +244,6 @@ $captions-color: $base-dial-color;
                     font: inherit;
 
                     transform-origin: center;
-                    transition: all 1s ease;
 
                     b {
                         font-weight: normal;

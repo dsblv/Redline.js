@@ -2,11 +2,28 @@
 
 body {
     background: #111;
+
+    font-family: Montserrat, Sans-Serif;
+
+    color: #eee;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 100px;
+}
+
+p a {
+    color: inherit;
 }
 
 /* redline.js gauge customization */
 #gauge {
-    margin: 100px auto;
+    margin: 160px auto 100px auto;
 }
 
 /* base dial thickness and color */
@@ -84,7 +101,6 @@ body {
     margin-top: 170px; /* from center */
     transform-origin: center -170px;
 }
-
 
 /* marks */
 #gauge .redline-captions li:before {

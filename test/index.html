@@ -9,6 +9,8 @@
 
 </head>
 <body>
+
+    <h1>Redline.js demo</h1>
     
     <div id="gauge" class="redline">
         <div class="redline-dial">
@@ -50,6 +52,11 @@
         </div>
 
     </div>
+
+
+    <p>Highly customizable HTML gauge</p>
+    <p><a href="https://github.com/dsblv/Redline.js">See ya on GitHub →</a></p>
+
     
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="../dist/redline.min.js"></script>
@@ -57,11 +64,19 @@
     <script>
 
         $(function () {
-            $('#gauge').gauge({
+
+            var gauge = $( '#gauge' ).redline({
                 aperture: 250,
                 position: 5,
                 marks: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
             });
+
+            setInterval(function () {
+                var position = Math.round(Math.random()*(gauge.redline( 'get', 'marks' ).length - 1));
+
+                gauge.redline( 'point', position );
+            }, 1000);
+
         });
 
     </script>

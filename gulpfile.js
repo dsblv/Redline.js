@@ -15,11 +15,13 @@ var path = {
     build  : 'dist/',
     source : {
         script : 'src/js/redline.js',
-        style  : 'src/scss/redline.scss'
+        style  : 'src/scss/redline.scss',
+        html   : 'src/html/redline.html'
     },
     watch  : {
         script : 'src/js/**/*',
-        style  : 'src/scss/**/*'
+        style  : 'src/scss/**/*',
+        html   : 'src/html/**/*'
     }
 };
 
@@ -51,6 +53,12 @@ gulp.task('style:build', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(path.build));
 
+});
+
+// Html file stays untouched
+gulp.task('html:build', function () {
+    gulp.src(path.source.html)
+        .pipe(gulp.dest(path.build));
 });
 
 // Task that builds everything
