@@ -13,9 +13,7 @@ Highly flexible JavaScript-driven html gauge.
 
 ##Usage##
 
-First you need html. Just place contents of `redline.html` to your page where you want to see the gauge.
-
-Then add some style by hooking up `redline.css`. You can build your own theme by compiling `src/scss/redline.scss` with custom variables. You can also override basic style via CSS as the demo (`test/css/style.css`) shows.
+First add some style by hooking up `redline.css`. You can build your own theme by compiling `src/scss/redline.scss` with custom variables. You can also override basic style via CSS as the demo (`demo/style.css`) shows.
 
 ###JavaScript###
 
@@ -58,7 +56,7 @@ You can initialize Redline with a set of options.
 ```javascript
 var options = {
     aperture    : 240, // gauge's aperture in degrees
-    marks       : [0, 1, 2, 'stop'], // array of custom marks
+    marks       : [{ caption: '0', type: 'srart' }, 1, 2, 'stop'], // array of custom marks
     innerMarks  : true, // if true — marks are kept inside the gauge
     position    : 0 // default gauge position
 }
