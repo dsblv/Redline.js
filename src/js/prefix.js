@@ -3,7 +3,7 @@
  * http://davidwalsh.name/vendor-prefix
  */
 
-var prefix = (function () {
+var vendorPrefix = (function () {
     var styles = window.getComputedStyle(document.documentElement, ''),
         pre = (Array.prototype.slice
             .call(styles)

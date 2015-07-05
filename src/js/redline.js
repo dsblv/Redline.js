@@ -66,7 +66,7 @@ var _ = {
     },
     rotate: function ( element, angle ) {
         element.style.transform =
-        element.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+        element.style[vendorPrefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
     },
     addClass: function ( element, className ) {
         var classList = element.className.split( ' ' );

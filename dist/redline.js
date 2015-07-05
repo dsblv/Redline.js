@@ -172,7 +172,7 @@ if ( typeof define === 'function' && define.amd ) {
  * http://davidwalsh.name/vendor-prefix
  */
 
-var prefix = (function () {
+var vendorPrefix = (function () {
     var styles = window.getComputedStyle(document.documentElement, ''),
         pre = (Array.prototype.slice
             .call(styles)
@@ -245,7 +245,7 @@ var _ = {
     },
     rotate: function ( element, angle ) {
         element.style.transform =
-        element.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+        element.style[vendorPrefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
     },
     addClass: function ( element, className ) {
         var classList = element.className.split( ' ' );
