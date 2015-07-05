@@ -1,0 +1,117 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+body {
+    background: #111;
+
+    font-family: Montserrat, Sans-Serif;
+
+    color: #eee;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 100px;
+}
+
+p a {
+    color: inherit;
+}
+
+/* redline.js gauge customization */
+#gauge .redline {
+    margin: 160px auto 100px auto;
+
+    font-family: inherit;
+    font-size: 16px;
+}
+
+/* base dial thickness and color */
+#gauge .redline-dial-segment-line {
+    border-color: #ebebeb;
+    border-width: 6px;
+}
+
+/* additional colors */
+#gauge .redline-dial-segment-warning .redline-dial-segment-line {
+    border-color: #ffa500;
+}
+#gauge .redline-dial-segment-danger .redline-dial-segment-line {
+    border-color: red;
+}
+
+/* custom colors */
+
+#gauge .redline-dial-segment-start .redline-dial-segment-line {
+    border-color: rgba(255, 255, 255, .5);
+}
+
+#gauge .redline-dial-segment-red .redline-dial-segment-line {
+    border-color: red;
+}
+#gauge .redline-dial-segment-orange .redline-dial-segment-line {
+    border-color: orange;
+}
+#gauge .redline-dial-segment-yellow .redline-dial-segment-line {
+    border-color: yellow;
+}
+#gauge .redline-dial-segment-green .redline-dial-segment-line {
+    border-color: green;
+}
+#gauge .redline-dial-segment-blue .redline-dial-segment-line {
+    border-color: blue;
+}
+#gauge .redline-dial-segment-indigo .redline-dial-segment-line {
+    border-color: indigo;
+}
+#gauge .redline-dial-segment-violet .redline-dial-segment-line {
+    border-color: violet;
+}
+
+
+/* animation speed for the arrow */
+#gauge .redline-hand-wrap {
+    transition: transform .5s ease;
+}
+
+/* arrow size */
+#gauge .redline-hand-arrow {
+    /* let arrow width be 10px */
+    margin-left: -3px; /* half */
+
+    border-left: 3px solid transparent; /* half */
+    border-right: 3px solid transparent; /* half */
+    
+    border-top: 130px solid red; /* length & color */
+}
+
+/* arrow root */
+#gauge .redline-hand-center {
+    /* let the radius be 10px */
+
+    margin-left: -6px;
+    margin-top: -6px;
+    
+    /* diameter */
+    width: 12px;
+    height: 12px;
+
+    background: red; /* color */
+}
+
+
+
+
+/* marks */
+#gauge .redline-dial-segment-mark:before {
+    width: 1px;
+    height: 20%;
+    background-color: white;
+}
+
+#gauge .redline.redline-inner-marks .redline-dial-segment-mark {
+    bottom: 6px; /* move captions instide to line width */
+}

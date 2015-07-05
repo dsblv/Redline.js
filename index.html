@@ -2,79 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redline.js</title>
+    <title>Gauge.js test page</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="dist/redline.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="redline.min.css">
 
 </head>
 <body>
 
     <h1>Redline.js demo</h1>
     
-    <div id="gauge" class="redline">
-        <div class="redline-dial">
-            <!-- Left side of the dial -->
-            <div class="redline-dial-left-half">
-                <div class="redline-dial-left-wrap">
-                    <div class="redline-dial-left"></div>
-                </div>
-            </div>
-            
-            <!-- Right side of the dial -->
-            <div class="redline-dial-right-half">
-                <div class="redline-dial-right-wrap">
-                    <div class="redline-dial-right"></div>
-                    
-                    <!-- Right side contains "warnig" and "danger" lines -->
-                    <div class="redline-dial-warning-wrap">
-                        <div class="redline-dial-warning"></div>
-                    </div>
-
-                    <div class="redline-dial-danger-wrap">
-                        <div class="redline-dial-danger"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        
-        <div class="redline-captions">
-            <ul>
-            </ul>
-        </div>
-
-        <div class="redline-hand">
-            <div class="redline-hand-wrap">
-                <div class="redline-hand-arrow"></div>
-                <div class="redline-hand-center"></div>
-            </div>
-        </div>
-
-    </div>
-
-
+    <div id="gauge"></div>
+    
     <p>Highly customizable HTML gauge</p>
-    <p><a href="https://github.com/dsblv/Redline.js">See ya on GitHub →</a></p>
+    <p><a href="//github.com/dsblv/Redline.js">See ya on GitHub →</a></p>
 
     
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="dist/redline.min.js"></script>
+    <script src="redline.min.js"></script>
 
     <script>
 
         $(function () {
 
-            var gauge = $( '#gauge' ).redline({
-                aperture: 250,
-                position: 5,
-                marks: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-            });
+            var options = [{
+                    aperture: 250,
+                    position: 5,
+                    marks: [{ caption: 'one', type: 'start' }, 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
+                    innerMarks: true
+                }, {
+                    aperture: 180,
+                    position: 5,
+                    marks: [
+                        { caption: 'R', type: 'red' },
+                        { caption: 'A', type: 'orange' },
+                        { caption: 'I', type: 'yellow' },
+                        { caption: 'N', type: 'green' },
+                        { caption: 'B', type: 'blue' },
+                        { caption: 'O', type: 'indigo' },
+                        { caption: 'W', type: 'violet' }
+                    ]
+                }
+            ]
+
+            var gauge = $( '#gauge' ).redline(options[ 1*(Math.random() < .2) ]);
 
             setInterval(function () {
                 var position = Math.round(Math.random()*(gauge.redline( 'get', 'marks' ).length - 1));
 
                 gauge.redline( 'point', position );
+
             }, 1000);
 
         });
