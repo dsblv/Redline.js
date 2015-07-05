@@ -10,7 +10,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dsblv/Gauge.js.git"
+    "url": "https://github.com/dsblv/Redline.js.git"
   },
   "dependencies": {
     "jquery-bridget": "^1.1.0"
