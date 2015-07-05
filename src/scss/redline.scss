@@ -1,11 +1,7 @@
 // Variables
 
-$gauge-diameter: 300px;
-$dial-width: 10px;
-
-$dial-aperture: 160deg;
-$warning-dial-angle: 60deg;
-$danger-dial-angle: 20deg;
+$gauge-diameter: 400px;
+$dial-width: 3px;
 
 $hand-length: 100px;
 $hand-width: 12px;
@@ -24,287 +20,230 @@ $captions-color: $base-dial-color;
 
     width: $gauge-diameter;
     height: $gauge-diameter;
+    
+    font-family: Arial, Sans-Serif;
+    font-size: 20px;
+    line-height: 1em;
 
     * {
         box-sizing: border-box;
     }
+}
 
-    .redline-dial {
+.redline-dial {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    .redline-dial-segment {
         display: block;
         position: absolute;
 
         width: 100%;
         height: 100%;
+
+        overflow: visible;
+
+        transform-origin: center;
+
         
-        .redline-dial-half {
+    
+        .redline-dial-segment-wrap {
             position: absolute;
+            
             width: 50%;
             height: 100%;
+            
             top: 0;
-            left: 0;
-            overflow: hidden;
-        }
-        
-        .redline-dial-left-half {
-            @extend .redline-dial-half;
-        }
-
-        .redline-dial-right-half {
-            @extend .redline-dial-half;
-            left: 50%;
-        }
-
-        .redline-dial-wrap {
-            position: absolute;
-                
-            width: 200%;
-            height: 50%;
-
-            overflow: hidden;
-        
-            transform-origin: bottom center;
-            transition: transform .5s ease;
-        }
-        
-        //$dial-angle-offset: (360deg - $dial-aperture)/2 - 90deg;
-
-        .redline-dial-left-wrap {
-            @extend .redline-dial-wrap;
-            left: 0;
-            transform: rotate(90deg);
-        }
-
-        .redline-dial-right-wrap {
-            @extend .redline-dial-wrap;
             right: 0;
-            transform: rotate(-90deg);
+            
+            overflow: hidden;
+
+            transform-origin: left center;
+
+            transition: transform .5s ease;
+
+            .redline-dial-segment-wrap-wrap {
+                position: absolute;
+
+                width: 100%;
+                height: 100%;
+
+                top: 0;
+                right: 100%;
+
+                overflow: hidden;
+
+                transform-origin: right center;
+
+                transition: transform .5s ease;
+
+                .redline-dial-segment-line {
+                    position: absolute;
+        
+                    width: 200%;
+                    height: 100%;
+
+                    border-radius: 100%;
+
+                    border: $dial-width solid $base-dial-color;
+                }
+            }
         }
 
-        .redline-dial {
+        &.redline-dial-segment-warning {
+            .redline-dial-segment-line {
+                border-color: $warning-dial-color !important;
+            }
+        }
+
+        &.redline-dial-segment-danger {
+            .redline-dial-segment-line {
+                border-color: $danger-dial-color !important;
+            }
+        }
+
+        .redline-dial-segment-mark {
+            display: block;
             position: absolute;
-        
-            width: 100%;
-            height: 200%;
 
-            border-radius: 100%;
+            width: 1em;
+            height: 1em;
 
-            border: $dial-width solid $base-dial-color;
-        }
-        
-        @each $type in left, right, warning, danger {
-            .redline-dial-#{$type} {
-                @extend .redline-dial;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            margin: auto;
+
+            .redline.redline-inner-marks & {
+                top: auto;
+                bottom: $dial-width;
+
+                .redline-dial-segment-mark-wrap {
+                    top: auto;
+                    bottom: 100%;
+
+                    &.redline-dial-segment-mark-left-fit {
+                        span {
+                            right: auto;
+                            left: 0;
+                        }
+                    }
+                    &.redline-dial-segment-mark-right-fit {
+                        span {
+                            left: auto;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+
+            .redline-dial-segment-mark-wrap {
+                display: block;
+                position: absolute;
+
+                width: 100%;
+                height: 100%;
+
+                top: 100%;
+
+                text-align: center;
+
+                transform-origin: center;
+
+                transform: rotate(-40deg);
+
+
+                &.redline-dial-segment-mark-left-fit {
+                    span {
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+                &.redline-dial-segment-mark-right-fit {
+                    span {
+                        position: absolute;
+                        left: 0;
+                    }
+                }
+            }
+
+            &:before {
+                display: block;
+                position: absolute;
+                content: "";
+
+                width: 2px;
+                height: 50%;
+
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+
+                background: $captions-color;
+
             }
         }
 
-        
-        .redline-dial-warning-wrap {
-            @extend .redline-dial-wrap;
-            
-            width: 100%;
-            height: 100%;
+    }        
+}
 
-            transform: rotate(180deg - $warning-dial-angle);
-            
-            .redline-dial-warning {
-                border-color: $warning-dial-color;
-            }
+.redline-hand {
+    position: absolute;
 
-        }
-        .redline-dial-danger-wrap {
-            @extend .redline-dial-warning-wrap;
-            
-            transform: rotate(180deg - $danger-dial-angle);
+    width: 100%;
+    height: 100%;
 
-            .redline-dial-danger {
-                border-color: $danger-dial-color;
-            }
-        }
-    }
+    overflow: hidden;
 
-    .redline-hand {
+    .redline-hand-wrap {
         position: absolute;
 
         width: 100%;
         height: 100%;
 
-        overflow: hidden;
+        transition: all .5s ease;
 
-        .redline-hand-wrap {
+        transform: rotate(180deg);
+
+        .redline-hand-arrow {
             position: absolute;
 
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
 
-            transition: all .5s ease;
+            margin-left: -$hand-width/2;
 
-            transform: rotate(180deg);
+            width: 0; 
+            height: 0;
 
-            .redline-hand-arrow {
-                position: absolute;
+            border-left: $hand-width/2 solid transparent;
+            border-right: $hand-width/2 solid transparent;
+            
+            border-top: $hand-length solid $hand-color;
 
-                top: 50%;
-                left: 50%;
-
-                margin-left: -$hand-width/2;
-
-                width: 0; 
-                height: 0;
-
-                border-left: $hand-width/2 solid transparent;
-                border-right: $hand-width/2 solid transparent;
-                
-                border-top: $hand-length solid $hand-color;
-
-            }
-
-            .redline-hand-center {
-                position: absolute;
-
-                top: 50%;
-                left: 50%;
-
-                margin-left: -$hand-center-radius;
-                margin-top: -$hand-center-radius;
-
-                width: $hand-center-radius*2;
-                height: $hand-center-radius*2;
-
-                background: $hand-color;
-
-                border-radius: 100%;
-            }
         }
-    }
 
-    .redline-captions {
-        position: absolute;
-        
-        width: 110%;
-        height: 110%;
-        
-        top: -5%;
-        left: -5%;
-
-        
-        font-family: Helvetica, Arial, Sans-Serif;
-        font-size: 22px;
-        line-height: 1em;
-        color: $captions-color;
-
-        ul {
-            display: block;
+        .redline-hand-center {
             position: absolute;
 
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
 
-            margin: 0;
-            padding: 0;
+            margin-left: -$hand-center-radius;
+            margin-top: -$hand-center-radius;
 
-            /*&:hover {
-                li {
-                    transform: rotate(220deg);
+            width: $hand-center-radius*2;
+            height: $hand-center-radius*2;
 
-                    span {
-                        transform: rotate(-220deg);
-                    }
-                }
-            }*/
+            background: $hand-color;
 
-            li {
-                display: block;
-                position: absolute;
-
-                margin: 0;
-                padding: 0;
-
-                width: 22px;
-                height: 22px;
-
-                top: 50%;
-                left: 50%;
-                
-                margin-top: ($gauge-diameter/2 + 20px);
-                margin-left: -11px;
-
-                transform-origin: center ($gauge-diameter/2 + 20px)*(-1);
-
-                text-align: center;
-                font: inherit;
-
-                span {
-                    display: block;
-                    position: absolute;
-
-                    width: 100%;
-                    height: 100%;
-
-                    text-align: inherit;
-                    font: inherit;
-
-                    transform-origin: center;
-
-                    b {
-                        font-weight: normal;
-                    }
-                }
-
-                &:before {
-                    display: block;
-                    position: absolute;
-                    content: "";
-
-                    width: 2px;
-                    height: 7px;
-
-                    top: -10px;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-
-                    background: $captions-color;
-                }
-                
-                &.redline-caption-left-fit {
-                    span b {
-                        position: absolute;
-                        right: 0;
-                    }
-                }
-                &.redline-caption-right-fit {
-                    span b {
-                        position: absolute;
-                        left: 0;
-                    }
-                }
-            }
-        }
-
-        &.redline-captions-inner {
-            li {
-                margin-top: ($gauge-diameter/2 - 40px - $dial-width);
-                transform-origin: center ($gauge-diameter/2 - 40px - $dial-width)*(-1);
-
-                &:before {
-                    top: auto;
-                    bottom: -10px;
-                }
-
-                &.redline-caption-left-fit {
-                    span b {
-                        left: 0;
-                        right: auto;
-                    }
-                }
-
-                &.redline-caption-right-fit {
-                    span b {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
+            border-radius: 100%;
         }
     }
 }

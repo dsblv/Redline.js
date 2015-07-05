@@ -16,13 +16,16 @@ var path = {
     source : {
         script : 'src/js/redline.js',
         style  : 'src/scss/redline.scss',
-        html   : 'src/html/redline.html'
+        html   : 'src/html/redline.html',
+        demo   : 'src/demo/'
     },
     watch  : {
         script : 'src/js/**/*',
         style  : 'src/scss/**/*',
-        html   : 'src/html/**/*'
-    }
+        html   : 'src/html/**/*',
+        demo   : 'src/demo'
+    },
+    demo   : 'demo/'
 };
 
 
@@ -63,6 +66,18 @@ gulp.task('html:build', function () {
 
 // Task that builds everything
 gulp.task('build', ['script:build', 'style:build']);
+
+// Task that compiles demo 
+gulp.task('demo:build', ['build'], function () {
+
+    gulp.src(path.source.demo + 'index.html')
+        .pipe(rigger())
+        .pipe(gulp.dest(path.demo));
+
+    gulp.src(path.source.demo + 'style.css')
+        .pipe(gulp.dest(path.demo));
+
+});
 
 // Task that cleans up the mess
 gulp.task('clean', function (cb) {

@@ -189,31 +189,90 @@ var prefix = (function () {
 })();
 
 
-function rotate( element, angle ) {
-    element.style.transform =
-    element.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+var _ = {
+    'nodify': function ( map, selector, parent, prefix ) {
+        function create ( attributes, prefix ) {
+            var el = window.document.createElement( attributes.tagName );
+            if ( attributes.className.length > 0 )
+                el.className = ( typeof prefix === 'string' ) ?
+                               prefix + '-' + attributes.className :
+                               attributes.className;
+
+            return el;
+        }
+
+        function translate ( selector ) {
+            var info = selector.split('.');
+
+            if ( info.length == 1 )
+                return {
+                    tagName   : 'div',
+                    className : info[0]
+                }
+            else
+                return {
+                    tagName   : info[0],
+                    className : info[1]
+                }
+        }
+
+        function isNode ( el ) {
+            return (typeof el === 'object' &&
+                    typeof el.appendChild === typeof Function);
+        }
+
+        var attributes = translate( selector ),
+            el;
+
+        if ( isNode( parent ) ) {
+            el = create( attributes, prefix );
+            parent.appendChild( el );
+        } else
+            el = create( attributes );
+
+        if ( typeof map === 'object' )
+            for (node in map)
+                _.nodify( map[node], node, el, prefix || selector );
+        else
+            _.nodify( null, map, el, prefix || selector );
+
+        return el;
+    },
+    byClass: function ( class, parent ) {
+        var parent = parent || window.document;
+
+        return parent.getElementsByClassName( class )[0] || false;
+    },
+    rotate: function ( element, angle ) {
+        element.style.transform =
+        element.style[prefix.lowercase + 'Transform'] = 'rotate(' + angle + 'deg)';
+    },
+    addClass: function ( element, className ) {
+        var classList = element.className.split( ' ' );
+
+        if ( classList.indexOf( className ) == -1 )
+            classList.push( className );
+
+        element.className = classList.join( ' ' );
+    }
 }
 
 
-/**
- * @param {Element} element
- * @param {Object} options
- * @constructor
- */
+
+
+// Main Redline class
 function Redline ( element, options ) {
 
     // default values
     var defaults = {
-        aperture    : 180,
+        aperture    : 260,
         marks       : [0, 1, 2, 3, 4, 5, 6],
         innerMarks  : false,
         position    : 0
     }
 
     // DOM elements 
-    this.el         = element;
-    this.handEl     = element.getElementsByClassName('redline-hand-wrap')[0];
-    this.captionsEl = element.getElementsByClassName('redline-captions')[0];
+    this.el = element;
 
     if ( window.jQuery )
         this.$el = window.jQuery( this.el );
@@ -221,6 +280,7 @@ function Redline ( element, options ) {
     this.attributes = defaults;
 
     this._extend( options )
+        ._processMarks()
         ._calculateAngle()
         ._init();
 
@@ -238,9 +298,6 @@ Redline.prototype.set = function ( key, value ) {
 
     this.attributes[key] = value;
 
-    if ( key === 'position' )
-        return this._calculateAngle();
-
     return this;
 }
 
@@ -255,26 +312,102 @@ Redline.prototype._extend = function ( obj ) {
     return this;
 }
 
+// handles marks array
+Redline.prototype._processMarks = function ( marks ) {
+    var marks = marks || this.get( 'marks' );
+
+    for ( var index in marks )
+        if ( typeof marks[index] != 'object' )
+            marks[index] = { caption: marks[index].toString() };
+
+    var length = marks.length;
+    if ( !marks[length - 2].type )
+        marks[length - 2].type = 'warning';
+
+    if ( !marks[length - 1].type )
+        marks[length - 1].type = 'danger';
+
+    return this;
+}
+
+
+// creates segment
+Redline.prototype._createSegment = function ( width, angle, index, loop ) {
+    var width  = width || 0,
+        angle  = angle || 0,
+        prefix = 'redline-dial-segment',
+        map    = {
+            'wrap': {
+                'wrap-wrap': 'line'
+            },
+            'mark': {
+                'mark-wrap': 'span.'
+            }
+        },
+        segment = _.nodify( map, prefix ),
+        mark    = this.get( 'marks' )[index];
+
+    // first let's rotate the segment
+    _.rotate( segment, angle );
+
+    // add class to it
+    if ( typeof mark.type != 'undefined' )
+        _.addClass( segment, prefix + '-' + mark.type );
+
+    // then rotate wraps to acheive desired width 
+    var outer   = _.byClass( prefix + '-wrap', segment ),
+        inner   = _.byClass( prefix + '-wrap-wrap', outer ),
+        caption = _.byClass( prefix + '-mark-wrap', segment );
+
+    if ( ( index == 0 || index == this.get( 'marks' ).length - 1 ) && !loop )
+        _.rotate( inner, -width/2 );
+    else
+        _.rotate( inner, -width );
+
+    if ( index == ( this.get( 'marks' ).length - 1 ) && !loop )
+        _.rotate( outer, 0 );
+    else
+        _.rotate( outer, width/2 );
+
+
+    // then rotate caption back to horizontal
+    _.rotate( caption, -angle );
+
+    console.log(caption);
+
+    // then align ling captions
+    if ( mark.caption.toString().length > 1 ) {
+        if ( index < this.get( 'marks' ).length / 2 )
+            _.addClass( caption, prefix + '-mark-left-fit' );
+        else
+            _.addClass( caption, prefix + '-mark-right-fit' );
+    }
+
+    caption.getElementsByTagName( 'span' )[0].innerHTML = mark.caption;
+
+    return segment;
+}
+
 // calculates actual hand angle
 Redline.prototype._calculateAngle = function ( angle, position, getter ) {
 
-    var angle      = angle    || this.get('aperture'),
+    var aperture   = angle    || this.get('aperture'),
         position   = position || this.get('position'),
-        percentage = position / (this.get('marks').length - 1);
-        handAngle  = (360 - angle) / 2 + angle * percentage;
+        noLoop     = 1 * ( aperture != 360 ),
+        percentage = position / ( this.get('marks').length - noLoop );
+        handAngle  = ( 360 - aperture ) / 2 + aperture * percentage;
 
     if ( getter )
         return handAngle;
 
-    return this.set('handAngle', handAngle)
-               .moveHand();
+    return this.set('handAngle', handAngle);
 }
 
 // moves the arrow to specific angle
 Redline.prototype.moveHand = function ( angle ) {
     var angle = angle || this.get('handAngle');
 
-    rotate( this.handEl, angle );
+    _.rotate( this.handEl, angle );
 
     return this;
 }
@@ -282,58 +415,52 @@ Redline.prototype.moveHand = function ( angle ) {
 
 // sets angles
 Redline.prototype.render = function () {
-    var angle       = (360 - this.get('aperture'))/2 - 90,
-        leftHalf    = this.el.getElementsByClassName('redline-dial-left-wrap')[0],
-        rightHalf   = this.el.getElementsByClassName('redline-dial-right-wrap')[0];
+    var aperture = this.get( 'aperture' ),
+        marks    = this.get( 'marks' ),
+        noLoop   = 1 * ( aperture != 360 ),
+        width    = aperture / (marks.length - noLoop);
+        prefix   = 'redline',
+        map      = {
+            'dial' : null,
+            'hand' : {
+                'hand-wrap' : {
+                    'hand-arrow'  : null,
+                    'hand-center' : null
+                }
+            }
+        },
+        redline  = _.nodify( map, prefix );
 
-    rotate( leftHalf, angle );
-    rotate( rightHalf, -angle );
+    this.el.innerHTML = '';
+    this.el.appendChild( redline );
+    this.el = redline;
 
-    return this._renderMarks();
-}
+    this.handEl = _.byClass( 'redline-hand-wrap', this.el );
 
-// drops custom marks on a gauge
-Redline.prototype._renderMarks = function () {
-    var marks = this.get( 'marks' ),
-        markList = this.captionsEl
-                       .getElementsByTagName( 'ul' )[0];
+    var dial     = _.byClass( 'redline-dial', this.el );
 
-    for ( var i in marks ) {
-        /* every mark should be placed and rotated the right way */
-        var mark  = window.document.createElement( 'li' ),
-            angle = this._calculateAngle(null, i, true);
+    for ( var index in marks ) {
+        angle = this._calculateAngle(null, index, true);
+        segment = this._createSegment( width, angle, index, aperture == 360 );
 
-        mark.innerHTML = '<span><b>' + marks[i] + '</b></span>';
-        rotate( mark, angle );
-        
-        var span = mark.getElementsByTagName( 'span' )[0];
-        rotate( span, -angle );
+        console.log(index);
 
-
-        /* nice alignment for long captions */
-        if ( marks[i].toString().length > 1 ) {
-            if ( i < marks.length / 2 )
-                mark.className = 'redline-caption-left-fit';
-            else
-                mark.className = 'redline-caption-right-fit';
-        }
-
-        /* ready to go */
-        markList.appendChild(mark);
+        dial.appendChild( segment );
     }
 
-    /* move marks inside if required */
-    if ( this.get('innerMarks') )
-        this.captionsEl.className += ' redline-captions-inner';
+    if ( this.get( 'innerMarks' ) )
+        _.addClass( this.el, 'redline-inner-marks' );
 
-    return this.moveHand();
+    return this;
 }
 
 Redline.prototype._init = Redline.prototype.render;
 
 
 Redline.prototype.point = function ( index ) {
-    return this.set('position', index);
+    return this.set('position', index)
+               ._calculateAngle()
+               .moveHand();
 }
 
 if ( typeof noGlobal === typeof undefined ) {
