@@ -96,3 +96,9 @@ You can install Redline.js via **npm**:
 ```
 npm install redline
 ```
+
+Or **bower**
+
+```
+bower install redline
+```
