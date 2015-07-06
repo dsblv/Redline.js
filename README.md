@@ -66,7 +66,7 @@ $( '#gauge' ).redline( options );
 
 ##Custimization##
 
-Redline.js gauge can be custimized entirely via CSS. Threr's also a possibility to customize each segment separately. To do so, just specify a type for a segment in `options.marks` array like this:
+Redline.js gauge can be custimized entirely via CSS. Threre's also a possibility to customize each segment separately. To do so, just specify a type for a segment in `options.marks` array like this:
 
 ```javascript
 // ~~~
