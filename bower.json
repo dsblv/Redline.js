@@ -1,0 +1,31 @@
+{
+  "name": "redline",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dsblv/Redline.js",
+  "authors": [
+    "Dmtry Sobolev <disobolev@icloud.com>"
+  ],
+  "description": "Customizable html gauge",
+  "main": "dist/redline.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsblv/Redline.js.git"
+  },
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "jquery",
+    "gauge"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
