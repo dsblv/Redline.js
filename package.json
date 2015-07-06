@@ -1,10 +1,10 @@
 {
   "name": "redline",
   "version": "1.0.0",
-  "description": "Flexible html gauge",
+  "description": "Customizable html gauge",
   "main": "dist/redline.js",
   "authors": [
-    "Dmitry Sobolev"
+    "Dmtry Sobolev <disobolev@icloud.com>"
   ],
   "license": "MIT",
   "homepage": "",
