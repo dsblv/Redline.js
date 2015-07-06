@@ -4,10 +4,15 @@
   "description": "Customizable html gauge",
   "main": "dist/redline.js",
   "authors": [
-    "Dmtry Sobolev <disobolev@icloud.com>"
+    "Dmitry Sobolev <disobolev@icloud.com>"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/dsblv/Redline.js",
+  "keywords": [
+    "jquery",
+    "gauge",
+    "redline"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dsblv/Redline.js.git"

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "homepage": "https://github.com/dsblv/Redline.js",
   "authors": [
-    "Dmtry Sobolev <disobolev@icloud.com>"
+    "Dmitry Sobolev <disobolev@icloud.com>"
   ],
   "description": "Customizable html gauge",
   "main": "dist/redline.js",
