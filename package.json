@@ -11,7 +11,9 @@
   "keywords": [
     "jquery",
     "gauge",
-    "redline"
+    "redline",
+    "progress",
+    "rpm"
   ],
   "repository": {
     "type": "git",

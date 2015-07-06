@@ -18,7 +18,10 @@
   ],
   "keywords": [
     "jquery",
-    "gauge"
+    "gauge",
+    "redline",
+    "progress",
+    "rpm"
   ],
   "license": "MIT",
   "ignore": [
