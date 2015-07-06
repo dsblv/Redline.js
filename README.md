@@ -64,6 +64,31 @@ var options = {
 $( '#gauge' ).redline( options );
 ```
 
+##Custimization##
+
+Redline.js gauge can be custimized entirely via CSS. Threr's also a possibility to customize each segment separately. To do so, just specify a type for a segment in `options.marks` array like this:
+
+```javascript
+// ~~~
+    marks: [
+        { caption: 'R', type: 'red' },
+        { caption: 'A', type: 'orange' },
+        { caption: 'I', type: 'yellow' },
+        { caption: 'N', type: 'green' },
+        { caption: 'B', type: 'blue' },
+        { caption: 'O', type: 'indigo' },
+        { caption: 'W', type: 'violet' }
+    ]
+// ~~~
+```
+
+*Type* will be attached to a segment element as a class: `.redline-dial-segment-*type*` so you can specify custom styles for it's color, font, mark size etc.
+
+There are also two default classes: `.redline-dial-segment-warning` and `.redline-dial-segment-danger` that are attached to penultimate and last 
+segment respectively, but can be overrided in `options`.
+
+You can found an example of fully customized gauge in `demo/`.
+
 ##Installation##
 
 You can install Redline.js via **npm**:
